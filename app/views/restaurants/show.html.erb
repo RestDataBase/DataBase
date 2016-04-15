@@ -1,5 +1,14 @@
 <p id="notice"><%= notice %></p>
+<H2><%= @restaurant.name %></H2>
+<p>
+<strong>Address:</strong>
+<%= @restaurant.street %>,
+<%= @restaurant.city %>,
+<%= @restaurant.state %>
+<%= @restaurant.zip %>
+</p>
 
+<!--
 <p>
   <strong>Name:</strong>
   <%= @restaurant.name %>
@@ -24,6 +33,7 @@
   <strong>Zip:</strong>
   <%= @restaurant.zip %>
 </p>
+-->
 
 <p>
   <strong>Phone:</strong>
