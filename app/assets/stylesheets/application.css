@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+ .dashboard {
+ 	background: #06139A
+ }
