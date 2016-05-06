@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  resources :orders
+  
   get 'home/index'
 
-  resources :customers
+  resources :customers 
+  resources :orders
+  
+
   resources :restaurants
   
   # The priority is based upon order of creation: first created -> highest priority.

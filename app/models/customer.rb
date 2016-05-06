@@ -1,4 +1,5 @@
 class Customer < ActiveRecord::Base
+	has_many :order
 
 	validates :fname, presence: true
 	validates :lname, presence: true
