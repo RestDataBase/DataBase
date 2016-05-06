@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
+
+<!--
 <H2><%= @restaurant.name %></H2>
 <p>
 <strong>Address:</strong>
@@ -7,8 +9,6 @@
 <%= @restaurant.state %>
 <%= @restaurant.zip %>
 </p>
-
-<!--
 <p>
   <strong>Name:</strong>
   <%= @restaurant.name %>
@@ -33,7 +33,6 @@
   <strong>Zip:</strong>
   <%= @restaurant.zip %>
 </p>
--->
 
 <p>
   <strong>Phone:</strong>
@@ -44,5 +43,25 @@
   <strong>Website:</strong>
   <%= @restaurant.website %>
 </p>
+-->
+<div class="container restaurant-container" id ="reservation_info">
+  <div class="reservationInfo">
+    <div class="list-group">
+      <h2><%= @restaurant.name %></h2>
+      <div class="media">
+        <!--Reservation info-->
+        <div class="pull-left">
+          <img class="media-object" src="https://goo.gl/GOzAhf" alt="user" height="120" width="120">
+        </div>
+        <div class="media-body">
+          <h4>Address: <%= @restaurant.street %>, <%= @restaurant.city %>, <%= @restaurant.state %> <%= @restaurant.zip %></h4>
+          <h4>Phone: <%= @restaurant.phone %></h4>
+          <h4>Website: <%= @restaurant.website %></h4>
+        </div>           
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> | <%= link_to 'Back', restaurants_path %>
