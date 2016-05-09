@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  resources :orders
+  
+  resources :reservations
   get 'home/index'
 
-  resources :customers
+  resources :customers 
+  resources :orders
+  
+
   resources :restaurants
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
