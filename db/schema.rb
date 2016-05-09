@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160505210013) do
-=======
 ActiveRecord::Schema.define(version: 20160506014308) do
->>>>>>> a474c5a0df0baa0af1fad039341331fcf9a91f9b
 
   create_table "customers", force: :cascade do |t|
     t.string   "fname",      limit: 255
@@ -31,16 +27,6 @@ ActiveRecord::Schema.define(version: 20160506014308) do
   end
 
   create_table "orders", force: :cascade do |t|
-<<<<<<< HEAD
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "reservations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-=======
     t.integer  "customer_id",  limit: 4
     t.string   "order_detail", limit: 255
     t.datetime "created_at",               null: false
@@ -48,7 +34,6 @@ ActiveRecord::Schema.define(version: 20160506014308) do
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
->>>>>>> a474c5a0df0baa0af1fad039341331fcf9a91f9b
 
   create_table "restaurants", force: :cascade do |t|
     t.string   "name",       limit: 255
