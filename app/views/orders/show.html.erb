@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<!--<p>
   <strong>Customer:</strong>
   <%= @order.customer %>
 </p>
@@ -9,6 +9,27 @@
   <strong>Order detail:</strong>
   <%= @order.order_detail %>
 </p>
+-->
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<div class="container order-container">
+  <div class="orderInfo">
+    <div class="list-group">
+      <h1 class="text-center">Order details</h>
+      <div class="media">
+        <!--Reservation info-->
+        <div class="media-body">
+          <hr>
+          <h4>Order ID: 10000001</h4>
+          <h4>Order Time: 6:00 PM</h4>
+          <h4>Order Type: Dine in</h4>
+          <h4>Orders:</h4>
+          <h4><%= @order.order_detail %></h4>
+        </div>           
+      </div>
+      <br>
+      <%= link_to 'Edit', edit_order_path(@order), class:'btn btn-danger' %>
+	  <%= link_to 'Back', orders_path, class:'btn btn-info' %>
+    </div>
+  </div>
+</div>
+

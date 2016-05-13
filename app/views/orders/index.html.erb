@@ -2,7 +2,7 @@
 
 <h1>Listing Orders</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Customer</th>
@@ -13,12 +13,12 @@
 
   <tbody>
     <% @orders.each do |order| %>
-      <tr>
+      <tr class="<%= cycle("info", "success") %>">
         <td><%= order.customer %></td>
         <td><%= order.order_detail %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', order, class:'btn btn-primary' %></td>
+        <td><%= link_to 'Edit', edit_order_path(order), class:'btn btn-success' %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger'%></td>
       </tr>
     <% end %>
   </tbody>

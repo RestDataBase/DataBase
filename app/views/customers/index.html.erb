@@ -15,12 +15,12 @@
 
   <tbody>
     <% @customers.each do |customer| %>
-      <tr class="<%= cycle('odd_line', 'even_line') %>">
+      <tr class="<%= cycle("info", "success") %>">
         <td><%= customer.fname %> <%= customer.lname %></td>
         <td><%= customer.street %> <%= customer.city %>, <%= customer.state %> <%= customer.zip %></td>
         <td><%= customer.phone %></td>
         <td><%= customer.email %></td>
-        <td><%= link_to 'Detail', customer %></td>
+        <td><%= link_to 'Detail', customer, class: 'btn btn-success' %></td>
         <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
         <td><%= link_to 'Delete', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
