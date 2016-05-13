@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'summary/index'
+
   resources :reservations
   get 'home/index'
 
