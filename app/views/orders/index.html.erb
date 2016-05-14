@@ -23,7 +23,8 @@ body{
     <tbody>
       <% @orders.each do |order| %>
         <tr class="<%= cycle("info", "success") %>">
-          <td><%= order.customer %></td>
+          <!--<td><%= order.customer %></td>-->
+          <td><%= Customer.find(order.customer).fullName %></td>
           <td><%= order.order_detail %></td>
           <td><%= link_to 'Show', order, class:'btn btn-primary' %></td>
           <td><%= link_to 'Edit', edit_order_path(order), class:'btn btn-success' %></td>

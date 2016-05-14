@@ -25,7 +25,8 @@ body{
     <tbody>
       <% @reservations.each do |reservation| %>
         <tr>
-          <td><%= reservation.customer %></td>
+          <!--<td><%= reservation.customer %></td>-->
+          <td><%= Customer.find(reservation.customer).fullName %>
           <td><%= reservation.date %></td>
           <td><%= reservation.time %></td>
           <td><%= reservation.party %></td>

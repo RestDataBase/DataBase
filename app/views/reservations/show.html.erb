@@ -2,7 +2,8 @@
 
 <p>
   <strong>Customer:</strong>
-  <%= @reservation.customer %>
+  <%#= @reservation.customer %>
+  <%= Customer.find(@reservation.customer).fullName %>
 </p>
 
 <p>
