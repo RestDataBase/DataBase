@@ -10,7 +10,7 @@ body{
 <h1>Listing Reservations</h1>
 
 <body>
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>Customer</th>
@@ -24,16 +24,18 @@ body{
 
     <tbody>
       <% @reservations.each do |reservation| %>
-        <tr>
-          <!--<td><%= reservation.customer %></td>-->
-          <td><%= Customer.find(reservation.customer).fullName %>
-          <td><%= reservation.date %></td>
+
+        <tr class="<%= cycle("info", "success") %>">
+          <td><%= Customer.find(reservation.customer).fullName %></td>
+           <td><%= reservation.date %></td>
           <td><%= reservation.time %></td>
           <td><%= reservation.party %></td>
           <td><%= reservation.request %></td>
-          <td><%= link_to 'Show', reservation %></td>
-          <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-          <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Detail', reservation, class:'btn btn-primary' %></td>
+          <td><%= link_to 'Edit', edit_reservation_path(reservation), class:'btn btn-success' %></td>
+          <td><%= link_to 'Delete', reservation, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %></td>
+
+
         </tr>
       <% end %>
     </tbody>
