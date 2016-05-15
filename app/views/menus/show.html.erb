@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<!--
+<p>
+  <strong>Item name:</strong>
+  <%= @menu.item_name %>
+</p>
+
+<p>
+  <strong>Item quantity:</strong>
+  <%= @menu.item_quantity %>
+</p>
+
+<p>
+  <strong>Item price:</strong>
+  <%= @menu.item_price %>
+</p>
+
+<p>
+  <strong>Item select:</strong>
+  <%= @menu.item_select %>
+</p>
+-->
+
+<div class="container menu-container">
+  <div class="menuInfo">
+    <div class="list-group">
+      <h1 class="text-center">Item details</h>
+      <div class="media">
+        <!--Item info-->
+        <div class="media-body">
+          <hr>
+          <h4>Item Name: <%= @menu.item_name %></h4>
+          <h4>Item Price: $ <%= @menu.item_price %></h4>
+        </div>           
+      </div>
+      <br>
+		  <%= link_to 'Edit', edit_menu_path(@menu), class:'btn btn-danger' %> 
+			<%= link_to 'Back', menus_path, class:'btn btn-info' %>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@
   They will automatically be included in application.css.
 */
 
-.order-container{
+.menu-container{
 	border: 1px solid black;
 	border-radius: 10px;
 	max-width: 800px;
