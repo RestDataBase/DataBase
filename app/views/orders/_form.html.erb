@@ -31,7 +31,30 @@
     </div>
     <div class="form-group">
       <h4>Order detail:</h4>
-      
+      <%= collection_select(:order, :customer_id, Menu.all, :id, :item_name, { prompt: "Choose an existing customer"}, {:class => "form-control"}) %>
+      <br>
+      <div class="menu-box">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Select</th>
+              <th>Item</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="checkbox">
+                  <label><input type="checkbox" value=""></label>
+                </div>
+              </td>
+              <td>Ramen</td>
+              <td>1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="form-group">
       <h4>Order detail:</h4>
