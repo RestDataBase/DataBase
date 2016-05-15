@@ -15,10 +15,12 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    @menu = Menu.all
   end
 
   # GET /orders/1/edit
   def edit
+    @menu = Menu.all
   end
 
   # POST /orders
