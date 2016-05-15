@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+<!--
   <div class="field">
     <%= f.label "First name" %><br>
     <%= f.text_field :fname %>
@@ -45,5 +45,67 @@
   </div>
   <div class="actions">
     <%= f.submit %>
+  </div>
+-->
+  <div class="container customer-container">
+    <form role="form">
+      <div class="form-group">
+        <div class="field">
+          <h4>First Name:</h4>
+          <%= f.text_field :fname %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <h4>Last Name:</h4>
+          <%= f.text_field :lname %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <h4>Street:</h4>
+          <%= f.text_field :street %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <h4>City:</h4>
+          <%= f.text_field :city %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <h4>State:</h4>
+          <%= f.text_field :state %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <h4>Zip:</h4>
+          <%= f.text_field :zip %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <h4>Phone:</h4>
+          <%= f.text_field :phone %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <h4>Email:</h4>
+          <%= f.text_field :email %>
+        </div>
+      </div>
+      <div class="actions">
+        <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+          <i class="icon-ok icon-white"></i> Save
+        <% end %>
+      </div>
+      <br>
+      <%= link_to 'Show', @customer, class:"btn btn-success" %> 
+      <%= link_to 'Back', customers_path, class:"btn btn-info" %>
+      <br><br>
+    </form>
   </div>
 <% end %>
