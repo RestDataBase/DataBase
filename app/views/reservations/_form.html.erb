@@ -10,10 +10,11 @@
       </ul>
     </div>
   <% end %>
-
+  <!--
   <div class="field">
     <%= f.label :customer_id %><br>
-    <%= f.text_field :customer_id %>
+    <%#= f.text_field :customer_id %>
+    <%= collection_select(:reservation, :customer_id, Customer.all, :id, :fullName, prompt: "Choose an existing customer") %>
   </div>
   <div class="field">
     <%= f.label :date %><br>
@@ -33,5 +34,50 @@
   </div>
   <div class="actions">
     <%= f.submit %>
+  </div>
+-->
+
+  <div class="container reservation-container">
+    <form role="form">
+      <div class="form-group">
+        <div class="field">
+          <h4>Customer:</h4>
+          <%= collection_select(:reservation, :customer_id, Customer.all, :id, :fullName, prompt: "Choose an existing customer") %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <h4>Date:</h4>
+          <%= f.date_select :date %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <h4>Time:</h4>
+          <%= f.time_select :time %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <h4>Party:</h4>
+          <%= f.number_field :party %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <h4>Request:</h4>
+          <%= f.text_area :request, size: "50x10" %>
+        </div>
+      </div>
+      <div class="actions">
+        <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+          <i class="icon-ok icon-white"></i> Save
+        <% end %>
+      </div>
+      <br>
+      <%= link_to 'Show', @reservation, class:"btn btn-success" %> 
+      <%= link_to 'Back', reservations_path, class:"btn btn-info" %>
+      <br><br>
+    </form>
   </div>
 <% end %>

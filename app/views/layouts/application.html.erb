@@ -1,3 +1,12 @@
+
+<style>
+body{
+  background: url(http://www.theredherring.co.za/wp-content/uploads/2013/03/background.jpg);
+  background-size: 100%;
+  background-position: center top;
+}
+</style>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,6 +22,7 @@
 					<a class="navbar-brand" href=" <%= root_path %>">Home</a>
 					<a class="navbar-brand" href=" <%= restaurants_path %>">Restaurants</a>
 					<a class="navbar-brand" href=" <%= customers_path %>">Customers</a>
+					<a class="navbar-brand" href=" <%= menus_path %>">Menu</a>
 					<a class="navbar-brand" href=" <%= orders_path %>">Orders</a>
 					<a class="navbar-brand" href=" <%= reservations_path %>">Reservations</a>
 					<a class="navbar-brand" href=" <%= summary_index_path %>">Summary</a>
@@ -23,6 +33,6 @@
 		<div style="margin:20px">
 			<%= yield %>
 		</div>
-		
+
 	</body>
 </html>
