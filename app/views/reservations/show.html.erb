@@ -2,7 +2,8 @@
 
 <p>
   <strong>Customer:</strong>
-  <%= @reservation.customer %>
+  <%#= @reservation.customer %>
+  <%= Customer.find(@reservation.customer).fullName %>
 </p>
 
 <p>
@@ -24,6 +25,7 @@
   <strong>Request:</strong>
   <%= @reservation.request %>
 </p>
+
 
 <%= link_to 'Edit', edit_reservation_path(@reservation) %> |
 <%= link_to 'Back', reservations_path %>

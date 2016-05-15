@@ -1,5 +1,6 @@
 class Customer < ActiveRecord::Base
-	has_many :order
+	has_many :orders
+	has_many :reservations
 
 	validates :fname, presence: true
 	validates :lname, presence: true
@@ -9,4 +10,7 @@ class Customer < ActiveRecord::Base
 	validates :zip, presence: true
 	validates :phone, presence: true
 
+	def fullName
+		"#{fname} #{lname}"
+	end
 end

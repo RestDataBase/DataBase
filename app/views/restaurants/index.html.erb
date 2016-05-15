@@ -30,7 +30,7 @@
         <td><%= restaurant.phone %></td>
         -->
         <td><%= restaurant.website.empty? ? 'N/A' : restaurant.website %></td>
-        <td><%= link_to 'Details', restaurant, class:'btn btn-primary' %></td>
+        <td><%= link_to 'Detail', restaurant, class:'btn btn-primary' %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant), class:'btn btn-success' %></td>
         <td><%= link_to 'Delete', restaurant, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %></td>
       </tr>
