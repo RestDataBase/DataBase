@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    @menu = Menu.all
   end
 
   # POST /orders
