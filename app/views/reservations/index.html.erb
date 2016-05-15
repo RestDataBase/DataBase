@@ -28,7 +28,7 @@
         <tr>
           <td><%= Customer.find(reservation.customer).fullName %></td>
            <td><%= reservation.date %></td>
-          <td><%= reservation.time %></td>
+          <td><%= reservation.time.to_s(:time) %></td>
           <td><%= reservation.party %></td>
           <td><%= reservation.request %></td>
           <td><%= link_to 'Detail', reservation, class:'btn btn-primary' %></td>
