@@ -36,7 +36,7 @@
           <hr>
           <h4><strong>Customer Name:</strong> <%= Customer.find(@reservation.customer).fullName %></h4>
           <h4><strong>Reservation Date:</strong> <%= @reservation.date %></h4>
-          <h4><strong>Reservation Time:</strong> <%= @reservation.time %></h4>
+          <h4><strong>Reservation Time:</strong> <%= @reservation.time.to_s(:time) %></h4>
           <h4><strong>Reservation party:</strong> <%= @reservation.party %></h4>
           <h4><strong>Request:</strong> <%= @reservation.request %></h4>
         </div>           

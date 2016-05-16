@@ -7,9 +7,9 @@
           <!--Reservation info-->
           <div class="media-body">
             <hr>
-            <h4>Total Customers:</h4>
-            <h4>Total Orders:</h4>
-            <h4>Total Reservations:</h4>
+            <h4>Total Customers: <%= Customer.all.count %></h4>
+            <h4>Total Orders: <%= Order.all.count %></h4>
+            <h4>Total Reservations: <%= Reservation.all.count %></h4>
           </div>           
         </div>
         <br>
