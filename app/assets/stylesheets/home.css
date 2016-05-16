@@ -5,10 +5,10 @@
 .well{
 	width: 500px;
 	height: 500px;
-}
-.carousel {
-	margin-bottom: 0;
-	padding: 0 10px 5px 10px;
+	padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .carousel-control {
@@ -31,4 +31,8 @@
 
 .carousel-indicators .active {
 background: #333333;
+}
+
+.centered{
+	margin: 0 auto;
 }
