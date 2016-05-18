@@ -5,6 +5,15 @@ body{
   background-size: 100%;
   background-position: center top;
 }
+
+.navbar-default {
+     background-color: transparent !important;
+     border: none !important;
+}
+
+.navbar-brand{
+	color: black !important;
+}
 </style>
 
 <!DOCTYPE html>
@@ -20,8 +29,9 @@ body{
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href=" <%= root_path %>">Home</a>
-					<a class="navbar-brand" href=" <%= restaurants_path %>">Restaurants</a>
+					<!--<a class="navbar-brand" href=" <%= restaurants_path %>">Restaurants</a>-->
 					<a class="navbar-brand" href=" <%= customers_path %>">Customers</a>
+					<a class="navbar-brand" href=" <%= menus_path %>">Menu</a>
 					<a class="navbar-brand" href=" <%= orders_path %>">Orders</a>
 					<a class="navbar-brand" href=" <%= reservations_path %>">Reservations</a>
 					<a class="navbar-brand" href=" <%= summary_index_path %>">Summary</a>

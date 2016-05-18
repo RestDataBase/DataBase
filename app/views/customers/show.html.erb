@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<!--
 <p>
   <strong>Fname:</strong>
   <%= @customer.fname %>
@@ -39,6 +39,26 @@
   <strong>Email:</strong>
   <%= @customer.email %>
 </p>
+-->
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+<div class="container customer-container">
+  <div class="orderInfo">
+    <div class="list-group">
+      <h1 class="text-center">Reservation details</h>
+      <div class="media">
+        <!--Reservation info-->
+        <div class="media-body">
+          <hr>
+          <h4><strong>Customer Name:</strong> <%= @customer.fname %> <%= @customer.lname %></h4>
+          <h4><strong>Address:</strong> <%= @customer.street %>, <%= @customer.city %>, <%= @customer.state %> <%= @customer.zip %></h4>
+          <h4><strong>Phone:</strong> <%= @customer.phone %></h4>
+          <h4><strong>Email:</strong> <%= @customer.email %></h4>
+        </div>           
+      </div>
+      <br>
+      <%= link_to 'Edit', edit_customer_path(@customer), class:'btn btn-danger' %> 
+      <%= link_to 'Back', customers_path, class:'btn btn-info' %>
+    </div>
+  </div>
+</div>
+

@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<!--<p>
   <strong>Customer:</strong>
   <%#= @reservation.customer %>
   <%= Customer.find(@reservation.customer).fullName %>
@@ -24,8 +24,26 @@
 <p>
   <strong>Request:</strong>
   <%= @reservation.request %>
-</p>
+</p>-->
 
-
-<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
-<%= link_to 'Back', reservations_path %>
+<div class="container reservation-container">
+  <div class="orderInfo">
+    <div class="list-group">
+      <h1 class="text-center">Reservation details</h>
+      <div class="media">
+        <!--Reservation info-->
+        <div class="media-body">
+          <hr>
+          <h4><strong>Customer Name:</strong> <%= Customer.find(@reservation.customer).fullName %></h4>
+          <h4><strong>Reservation Date:</strong> <%= @reservation.date %></h4>
+          <h4><strong>Reservation Time:</strong> <%= @reservation.time.to_s(:time) %></h4>
+          <h4><strong>Reservation party:</strong> <%= @reservation.party %></h4>
+          <h4><strong>Request:</strong> <%= @reservation.request %></h4>
+        </div>           
+      </div>
+      <br>
+      <%= link_to 'Edit', edit_reservation_path(@reservation), class:'btn btn-danger' %> 
+      <%= link_to 'Back', reservations_path, class:'btn btn-info' %>
+    </div>
+  </div>
+</div>

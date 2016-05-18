@@ -19,10 +19,11 @@
         <!--Reservation info-->
         <div class="media-body">
           <hr>
-          <h4>Order ID: 10000001</h4>
-          <h4>Order Time: 6:00 PM</h4>
-          <h4>Order Type: Dine in</h4>
-          <h4>Orders:</h4>
+          <h4>Order ID: <%= @order.id %></h4>
+          <h4>Order Made: <%= @order.created_at_before_type_cast %></h4>
+          <h4>Order Updated: <%= @order.updated_at_before_type_cast %></h4>
+          </br>
+          <h4>Order:</h4>
           <h4><%= @order.order_detail %></h4>
         </div>           
       </div>

@@ -25,19 +25,47 @@
 -->
 <div class="container order-container">
   <form role="form">
-    <!--
-    <div class="form-group">
-      <h4>Customer:</h4>
-      <%= f.text_field :customer_id, class:"form-control"%>
-    </div>
-    -->
     <div class="form-group">
       <h4>Customer:</h4>
       <%= collection_select(:order, :customer_id, Customer.all, :id, :fullName, { prompt: "Choose an existing customer"}, {:class => "form-control"}) %>
     </div>
+
+    <!--
     <div class="form-group">
       <h4>Order detail:</h4>
-      <%= f.text_area :order_detail, size: "50x20", class:"form-control", rows:"5" %>
+      <%= collection_select(:order, :customer_id, Menu.all, :id, :item_name, { prompt: "Choose an existing customer"}, {:class => "form-control"}) %>
+    -->
+      <br>
+      <!--
+      <div class="menu-box">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Select</th>
+              <th>Item</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%# @menu.each do |menu| %>
+              <tr>
+                <td>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value=""></label>
+                  </div>
+                </td>
+                <td><%#= menu.item_name %></td>
+                <td><%#= menu.item_quantity %></td>
+              </tr>
+            <%# end %>
+          </tbody>
+        </table>
+      </div>
+      -->
+    </div>
+    <div class="form-group">
+      <h4>Order detail:</h4>
+      <%= f.text_area :order_detail, class:"form-control", rows:"15" %>
     </div>
     <div class="actions">
       <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
@@ -45,6 +73,9 @@
       <% end %>
     </div>
     <br>
+    <%= link_to 'Show', @order, class:"btn btn-success"%> 
+    <%= link_to 'Back', orders_path, class:"btn btn-info" %>
+    <br><br>
   </form>
 </div>
 <% end %>
