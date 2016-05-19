@@ -1,5 +1,11 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_filter :selectedItems
+  skip_before_action :verify_authenticity_token, only: [:addItem]
+
+  def selectedItems
+    @selectedItems
+  end
 
   # GET /orders
   # GET /orders.json
@@ -10,12 +16,42 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @items = Item.all
   end
 
   # GET /orders/new
   def new
+    # selectedItems
+    # Rails.logger.debug("@selectedItems: #{@selectedItems}")
     @order = Order.new
     @menu = Menu.all
+  end
+
+  def addItem
+    # local = []
+    # if params[:actions] == "add"
+    #   #Rails.logger.debug("inside if")
+    #   item = {:menu_id => params[:menu_id], :quantity => params[:quantity]}
+    #   Rails.logger.debug("item: #{item}")
+    #   local.push(item)
+    #   @selectedItems.push(item)
+    #   Rails.logger.debug("local: #{local}")
+    #   Rails.logger.debug("@selectedItems: #{@selectedItems}")
+    # else
+    #   #Rails.logger.debug("inside else")
+    # end
+
+    @selectedItems = JSON.parse(params[:selectedItems])
+    Rails.logger.debug("@selectedItems: #{@selectedItems}")
+
+    # @selectedItems.each do |selectedItem| {
+    #   item = Item.new
+    #   item.menu_id = selectedItem[:menu_id]
+    #   item.quantity = selectedItem[:quantity]
+    #   item.orders_id = Order.last.id + 1
+    #   item.save
+    # }
+
   end
 
   # GET /orders/1/edit
@@ -37,6 +73,17 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+
+    # @selectedItems.each do |selectedItem|
+    #   item = Item.new
+    #   item.menu = selectedItem.id
+    #   item.quantity = selectedItems.quantity
+    #   item.order = @order.id
+    #   item.save
+    # end
+
+    #@selectedItems = JSON.parse(params[:selectedItems])
+    Rails.logger.debug("@selectedItems in create: #{@selectedItems}")
   end
 
   # PATCH/PUT /orders/1

@@ -21,8 +21,8 @@
   <tbody>
     <% @menus.each do |menu| %>
       <tr>
-        <td><%= menu.item_name %></td>
-        <td><%= menu.item_price %></td>
+        <td><%= menu.name %></td>
+        <td><%= menu.price %></td>
         <td><%= link_to 'Detail', menu, class:'btn btn-primary' %></td>
         <td><%= link_to 'Edit', edit_menu_path(menu), class:'btn btn-success' %></td>
         <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %></td>

@@ -22,6 +22,14 @@
           <h4>Order ID: <%= @order.id %></h4>
           <h4>Order Made: <%= @order.created_at_before_type_cast %></h4>
           <h4>Order Updated: <%= @order.updated_at_before_type_cast %></h4>
+          <!-- </br>
+          <h4>Items:</h4>
+          <%# @items.each do |item| %>
+            <%# if (item.order_id == @order.id) %>
+              <%# menu_item = Menu.find(item.menu_id) %>
+              <h4><%#= "#{item.quantity} #{menu_item.name} #{menu_item.price}"%></h4>
+            <%# end %> 
+          <%# end %> -->
           </br>
           <h4>Order:</h4>
           <h4><%= @order.order_detail %></h4>
