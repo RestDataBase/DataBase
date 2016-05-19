@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160515205454) do
+ActiveRecord::Schema.define(version: 20160518082930) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "fname",      limit: 255
@@ -26,13 +26,22 @@ ActiveRecord::Schema.define(version: 20160515205454) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "items", force: :cascade do |t|
+    t.integer  "order_id",   limit: 4
+    t.integer  "menu_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "quantity",   limit: 4
+  end
+
+  add_index "items", ["menu_id"], name: "index_items_on_menu_id", using: :btree
+  add_index "items", ["order_id"], name: "index_items_on_order_id", using: :btree
+
   create_table "menus", force: :cascade do |t|
-    t.string   "item_name",     limit: 255
-    t.integer  "item_quantity", limit: 4
-    t.float    "item_price",    limit: 24
-    t.boolean  "item_select"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",       limit: 255
+    t.float    "price",      limit: 24
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "orders", force: :cascade do |t|
@@ -40,9 +49,11 @@ ActiveRecord::Schema.define(version: 20160515205454) do
     t.text     "order_detail", limit: 65535
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "item_id",      limit: 4
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
+  add_index "orders", ["item_id"], name: "index_orders_on_item_id", using: :btree
 
   create_table "reservations", force: :cascade do |t|
     t.integer  "customer_id", limit: 4
@@ -68,6 +79,9 @@ ActiveRecord::Schema.define(version: 20160515205454) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "items", "menus"
+  add_foreign_key "items", "orders"
   add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "items"
   add_foreign_key "reservations", "customers"
 end

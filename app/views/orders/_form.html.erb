@@ -11,64 +11,59 @@
     </div>
   <% end %>
 
-  <!--<div class="field">
-    <%= f.label :customer_id %><br>
-    <%= f.text_field :customer_id %>
-  </div>
-  <div class="field">
-    <%= f.label :order_detail %><br>
-    <%= f.text_area :order_detail, size: "50x20" %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
--->
-<div class="container order-container">
-  <form role="form">
+  <div class="container order-container">
+    <form role="form">
+      <div class="form-group">
+        <h4>Customer:</h4>
+        <%= collection_select(:order, :customer_id, Customer.all, :id, :fullName, { prompt: "Choose an existing customer"}, {:class => "form-control"}) %>
+      </div>
+    </form>
+    
+    <h4>Menu:</h4>
     <div class="form-group">
-      <h4>Customer:</h4>
-      <%= collection_select(:order, :customer_id, Customer.all, :id, :fullName, { prompt: "Choose an existing customer"}, {:class => "form-control"}) %>
+      <div class="row">
+        <div class="col-xs-7">
+          <select class="form-control" name="item">
+            <option value="">Choose an item from the menu</option>
+            <% Menu.all.each do |item| %>
+              <option id="item" value="<%= item.id %>"><%= item.name %></option>
+            <% end %>
+          </select>   
+        </div>
+
+        <div class="col-xs-3">
+          <select class="form-control" name="item-quantity">
+            <option value="">Quantity</option>
+            <% (1..20).each do |val| %>
+              <option id="quantity" value="<%= val%>"><%= val %></option>
+            <% end %>
+          </select>
+        </div>
+        <div class="col-xs-2">
+          <button id="addItem" type="button" class="form-control btn btn-primary">Add</button>
+        </div>
+      </div>
     </div>
 
-    <!--
+    <table id="itemTable" class="table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+      <tbody id="itemList">
+      </tbody>
+    </table>
+
+
     <div class="form-group">
-      <h4>Order detail:</h4>
-      <%= collection_select(:order, :customer_id, Menu.all, :id, :item_name, { prompt: "Choose an existing customer"}, {:class => "form-control"}) %>
-    -->
-      <br>
-      <!--
-      <div class="menu-box">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Select</th>
-              <th>Item</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%# @menu.each do |menu| %>
-              <tr>
-                <td>
-                  <div class="checkbox">
-                    <label><input type="checkbox" value=""></label>
-                  </div>
-                </td>
-                <td><%#= menu.item_name %></td>
-                <td><%#= menu.item_quantity %></td>
-              </tr>
-            <%# end %>
-          </tbody>
-        </table>
-      </div>
-      -->
-    </div>
-    <div class="form-group">
-      <h4>Order detail:</h4>
-      <%= f.text_area :order_detail, class:"form-control", rows:"15" %>
+      <h4>Order Detail:</h4>
+      <%= f.text_area :order_detail, id: "orderDetail", class:"form-control", rows:"5" %>
     </div>
     <div class="actions">
-      <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+      <%= button_tag(id: 'saveBtn', type: 'submit', class: "btn btn-primary") do %>
         <i class="icon-ok icon-white"></i> Save
       <% end %>
     </div>
@@ -76,6 +71,93 @@
     <%= link_to 'Show', @order, class:"btn btn-success"%> 
     <%= link_to 'Back', orders_path, class:"btn btn-info" %>
     <br><br>
-  </form>
-</div>
+  </div>
 <% end %>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    var selectedItems = [];
+    $(document).on("click", "#addItem", function() {
+      //alert("item: " + $("[name=item]").val());
+      //selectedItems.push($("[name=item]").val());
+      
+      var item = {
+        id: $("[name=item]").val(),
+        name: $("[name=item] option:selected").text(),
+        quantity: $("[name=item-quantity").val()
+      }
+
+      addItem(item);
+      console.log(selectedItems);
+      showSelectedItems();
+      addToOrderDetail(selectedItems);
+    });
+
+    $(document).on("click", "#removeItem", function() {
+      var itemIndex = $(this).attr("value");
+
+      //console.log("removing item with index: " + itemIndex);
+
+      removeSelectedItems(itemIndex);
+      showSelectedItems();
+      addToOrderDetail(selectedItems);
+    });
+
+    $(document).on("click", "#saveBtn", function() {
+      sendSelectedItem();
+    });
+  
+
+    function sendSelectedItem() {
+      $.ajax({
+        type: "POST",
+        url: "<%= orders_addItem_path %>",
+        data: {selectedItems: JSON.stringify(selectedItems)}
+      });
+    }
+
+    function addItem(item) {
+      if (item.id != "" && item.quantity != "") {
+        selectedItems.push(item);
+      }
+    }
+
+    function showSelectedItems() {
+      var allSelectedItems;
+      for (var i = 0; i < selectedItems.length; i++) {
+        allSelectedItems += itemText(selectedItems[i].name, selectedItems[i].quantity, i);
+      }
+
+      $("#itemList").html("").html(allSelectedItems);
+    }
+
+    function itemText(name, quantity, index) {
+      //console.log(name + "   " + quantity + "   " + index);
+      return '<tr><td>' + name + '</td><td>' + quantity + '</td>' + '<td><button id="removeItem" value=' + index + ' type="button" class="btn btn-danger">Remove</button></td>';
+    }
+
+    function removeSelectedItems(index) {
+      selectedItems.splice(index, 1);
+    }
+
+    function addToOrderDetail(selectedItems) {
+      $("#orderDetail").val("");
+      $("#orderDetail").val(setOrderDetailText(selectedItems));
+    }
+
+    function setOrderDetailText(selectedItems) {
+      //var text = "Items : Quantity\n";
+      var text = "";
+
+      for (var i = 0; i < selectedItems.length; i++) {
+        text += selectedItems[i].name + " : " + selectedItems[i].quantity + "\n";
+      }
+
+      return text;
+    }
+
+  });
+</script>

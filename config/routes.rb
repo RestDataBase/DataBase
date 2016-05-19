@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  match 'orders/addItem' => 'orders#addItem', :via => :post
+
   resources :menus
   get 'summary/index'
 
