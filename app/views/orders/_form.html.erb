@@ -74,9 +74,6 @@
   </div>
 <% end %>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-
 <script>
   $(document).ready(function() {
     var selectedItems = [];
@@ -153,7 +150,7 @@
       var text = "";
 
       for (var i = 0; i < selectedItems.length; i++) {
-        text += selectedItems[i].name + " : " + selectedItems[i].quantity + "\n";
+        text += selectedItems[i].name + " : " + selectedItems[i].quantity + "\r\n";
       }
 
       return text;

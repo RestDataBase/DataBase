@@ -32,7 +32,10 @@
           <%# end %> -->
           </br>
           <h4>Order:</h4>
-          <h4><%= @order.order_detail %></h4>
+          <!-- <h4><%#= @order.order_detail %></h4> -->
+          <% @order.order_detail.split("\r\n").each do |item| %>
+            <h4><%= item %></h4>
+          <% end %>
         </div>           
       </div>
       <br>
